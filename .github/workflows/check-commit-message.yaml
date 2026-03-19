@@ -28,7 +28,7 @@ jobs:
             echo "${out}" | tee -a ${GITHUB_STEP_SUMMARY}
             err=1
           else
-            echo "ok" | tee -a ${GITHUB_STEP_SUMMARY}
+            echo "✅ ok" | tee -a ${GITHUB_STEP_SUMMARY}
           fi
         done <<< $(git rev-list --oneline ${{github.event.pull_request.base.sha}}..${{github.event.pull_request.head.sha}})
 
