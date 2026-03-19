@@ -11,7 +11,7 @@
 use strict;
 use warnings;
 
-my $E = "[🛑] ";
+my $E = "❌ ";
 
 # 72 characters is a natural choice. It provides 4 characters of
 # left/right margin on a standard 80 character wide terminal in
