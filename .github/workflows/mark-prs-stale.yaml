@@ -10,7 +10,7 @@ env:
 
 jobs:
   mark_stale_prs:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     permissions:
       pull-requests: write
 
@@ -19,7 +19,7 @@ jobs:
       - run: |
           echo "PR_TOTAL_DAYS=$((PR_STALE_DAYS+PR_CLOSE_DAYS))" >>"$GITHUB_ENV"
 
-      - uses: actions/stale@v10
+      - uses: actions/stale@b5d41d4e1d5dceea10e7104786b73624c18a190f # v10
         with:
           stale-pr-message: "This pull-request has been automatically marked 'stale' because it has been inactive for **${{ env.PR_STALE_DAYS }}** days.
 
