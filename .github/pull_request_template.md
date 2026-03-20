@@ -26,7 +26,7 @@ them here.
 
 Before submitting this PR, please confirm:
 
-- [ ] I have read the [CONTRIBUTING](/Contributing.rst) guidelines
+- [ ] I have read the [CONTRIBUTING](/ac000/gh-sandpit/blob/master/Contributing.rst) guidelines
 - [ ] I have added tests (if applicable) to validate my changes
 - [ ] All existing tests pass
 - [ ] I have updated documentation where necessary
