@@ -19,12 +19,12 @@ jobs:
       id: check_out
       run: |
         echo "## Whitespace Check Results" >${GITHUB_STEP_SUMMARY}
-        log=
         commit=
         while read dash hash subj
         do
           case "${dash}" in
           "---")
+            err=0
             commit="${hash} (\"${subj}\")"
             ;;
           "")
@@ -32,18 +32,17 @@ jobs:
           *)
             if test -n "${commit}"
             then
-              log="${log}\n${commit}"
               echo "" | tee -a ${GITHUB_STEP_SUMMARY}
               echo "--- ${commit}" | tee -a ${GITHUB_STEP_SUMMARY}
             fi
+            err=1
             commit=
-            log="${log}\n${dash} ${hash} ${subj}"
             echo "${dash} ${hash} ${subj}" | tee -a ${GITHUB_STEP_SUMMARY}
             ;;
           esac
         done <<< $(git log --check --pretty=format:"--- %h %s" ${{github.event.pull_request.base.sha}}..)
 
-        if test -n "${log}"
+        if test ${err} -ne 0
         then
           exit 2
         fi
