@@ -19,6 +19,7 @@ jobs:
       id: check_out
       run: |
         echo "## Whitespace Check Results" >${GITHUB_STEP_SUMMARY}
+        err=0
         commit=
         while read dash hash subj
         do
@@ -37,6 +38,8 @@ jobs:
             fi
             err=1
             commit=
+            # Ignore the variable names, this is actually the output from
+            # git-log --check
             echo "${dash} ${hash} ${subj}" | tee -a ${GITHUB_STEP_SUMMARY}
             ;;
           esac
