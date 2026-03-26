@@ -37,8 +37,8 @@ jobs:
               echo "--- ${commit}" | tee -a ${GITHUB_STEP_SUMMARY}
             fi
             commit=
-            log="${log}\n${dash} ${hash} (\"${subj}\")"
-            echo "${dash} ${hash} (\"${subj}\")" | tee -a ${GITHUB_STEP_SUMMARY}
+            log="${log}\n${dash} ${hash} ${subj}"
+            echo "${dash} ${hash} ${subj}" | tee -a ${GITHUB_STEP_SUMMARY}
             ;;
           esac
         done <<< $(git log --check --pretty=format:"--- %h %s" ${{github.event.pull_request.base.sha}}..)
