@@ -1,6 +1,5 @@
 name: Check Whitespace
 
-# Get the repo with the commits(+1) in the series.
 # Process `git log --check` output to extract just the check errors.
 
 on:
@@ -16,7 +15,6 @@ jobs:
         fetch-depth: 0
 
     - name: git log --check
-      id: check_out
       run: |
         echo "## Whitespace Check Results" >${GITHUB_STEP_SUMMARY}
         err=0
