@@ -16,7 +16,7 @@ jobs:
       run: |
         echo "## Check for 'Version bump' commit" >${GITHUB_STEP_SUMMARY}
         subj=$(git log --format=%s $(git describe --abbrev=0 --tags).. | tail -1)
-        if ! [[ "${subj,,}" =~ ^(version bump)[.]?$ ]]
+        if ! expr "$subj" : 'Version bump' >/dev/null
         then
           echo "❌ No 'Version bump' commit immediately after release tag" | tee -a ${GITHUB_STEP_SUMMARY}
           exit 2
