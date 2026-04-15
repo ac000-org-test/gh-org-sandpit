@@ -9,9 +9,6 @@ on:
     types:
       - opened
 
-env:
-  GH_TOKEN: ${{ steps.generate-token.outputs.token }}
-
 jobs:
   set-issue-date:
     runs-on: ubuntu-latest
@@ -25,6 +22,7 @@ jobs:
 
       - name: Get project data
         env:
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
           ORGANIZATION: ac000
           PROJECT_NUMBER: 9
         run: |
@@ -52,6 +50,8 @@ jobs:
 
       # Needed to get the item's Global ID
       - name: Add pull-request/issue to project
+        env:
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
         run: |
           if [ "${{ github.event_name }}" = "issues" ]; then
             PRI_ID=${{ github.event.issue.node_id }}
@@ -73,6 +73,8 @@ jobs:
           echo 'ITEM_ID='$item_id >>$GITHUB_ENV
 
       - name: Set pull-request/issue creation date
+        env:
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
         run: |
           if [ "${{ github.event_name }}" = "issues" ]; then
             DATE=${{ github.event.issue.created_at }}
