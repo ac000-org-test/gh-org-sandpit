@@ -10,13 +10,19 @@ on:
       - opened
 
 env:
-  GH_TOKEN: ${{ secrets.PROJECT_PAT }}
+  GH_TOKEN: ${{ steps.generate-token.outputs.token }}
 
 jobs:
   set-issue-date:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Generate token
+        uses: actions/create-github-app-token@1b10c78c7865c340bc4f6099eb2f838309f1e8c3
+        with:
+          app-id: ${{ vars.NGINX_OSS_PRJ_APP_ID}}
+          private-key: ${{ secrets.NGINX_OSS_PROJ_APP_PEM }}
+
       - name: Get project data
         env:
           ORGANIZATION: ac000
