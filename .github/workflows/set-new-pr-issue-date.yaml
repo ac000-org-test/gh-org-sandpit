@@ -19,7 +19,7 @@ jobs:
         id: generate-token
         uses: actions/create-github-app-token@v2
         with:
-          app-id: ${{ vars.NGINX_OSS_PROJ_CLIENT_ID }}
+          client-id: ${{ vars.NGINX_OSS_PROJ_CLIENT_ID }}
           private-key: ${{ secrets.NGINX_OSS_PROJ_APP_PEM }}
 
       - name: Get project data
