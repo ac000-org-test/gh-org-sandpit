@@ -11,8 +11,6 @@ on:
 
 jobs:
   set-issue-date:
-    permissions: write-all
-
     runs-on: ubuntu-latest
 
     steps:
@@ -20,7 +18,7 @@ jobs:
         id: generate-token
         uses: actions/create-github-app-token@1b10c78c7865c340bc4f6099eb2f838309f1e8c3
         with:
-          app-id: ${{ vars.NGINX_OSS_PRJ_CLIENT_ID}}
+          app-id: ${{ vars.NGINX_OSS_PROJ_CLIENT_ID }}
           private-key: ${{ secrets.NGINX_OSS_PROJ_APP_PEM }}
 
       - name: Get project data
