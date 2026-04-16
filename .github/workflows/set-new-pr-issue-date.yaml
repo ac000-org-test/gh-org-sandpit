@@ -21,6 +21,7 @@ jobs:
         with:
           client-id: ${{ vars.NGINX_OSS_PROJ_CLIENT_ID }}
           private-key: ${{ secrets.NGINX_OSS_PROJ_APP_PEM }}
+          skip-token-revoke: true
 
       - name: Get project data
         env:
