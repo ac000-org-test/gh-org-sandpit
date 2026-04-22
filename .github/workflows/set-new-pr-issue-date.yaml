@@ -11,6 +11,7 @@ on:
 
 jobs:
   set-issue-date:
+    if: ${{ github.repository == 'nginx/nginx' }}
     runs-on: ubuntu-latest
 
     steps:
