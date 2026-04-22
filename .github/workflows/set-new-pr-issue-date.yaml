@@ -11,7 +11,7 @@ on:
 
 jobs:
   set-issue-date:
-    if: ${{ github.repository == 'nginx/nginx' }}
+    if: ${{ github.repository == 'ac000-org-test/gh-org-sandpit' }}
     runs-on: ubuntu-latest
 
     steps:
