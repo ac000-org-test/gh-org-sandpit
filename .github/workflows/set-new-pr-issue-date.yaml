@@ -11,6 +11,9 @@ on:
 
 jobs:
   set-issue-date:
+    permissions:
+      contents: read
+      projects: write
     if: ${{ github.repository == 'ac000-org-test/gh-org-sandpit' }}
     runs-on: ubuntu-latest
 
