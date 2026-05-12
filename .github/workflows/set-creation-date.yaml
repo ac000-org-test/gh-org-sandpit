@@ -12,12 +12,21 @@ jobs:
     runs-on: ubuntu-24.04
 
     steps:
+      - name: Get secrets from Azure
+        uses: nginx/ci-self-hosted/.github/actions/get-from-vault@5c3e1f8b51f66a851fdba80f70e19cf966199730
+        with:
+          client-id: ${{ secrets.NGINX_OSS_CLIENT_ID }}
+          tenant-id: ${{ secrets.NGINX_OSS_TENANT_ID }}
+          vault-name: ${{ secrets.NGINX_OSS_VAULT_NAME }}
+          secret-names: "github-nginx-oss-app-project-client-id, github-nginx-oss-app-project-private-key"
+          env-names: "NGINX_OSS_PROJ_CLIENT_ID, NGINX_OSS_PROJ_PRIV_KEY"
+
       - name: Generate token
         id: generate-token
         uses: actions/create-github-app-token@1b10c78c7865c340bc4f6099eb2f838309f1e8c3 # v3.1.1
         with:
-          client-id: ${{ secrets.AC000_ORG_TEST_CLIENT_ID }}
-          private-key: ${{ secrets.AC000_ORG_TEST_PRIV_KEY }}
+          client-id: ${{ env.NGINX_OSS_PROJ_CLIENT_ID }}
+          private-key: ${{ env.NGINX_OSS_PROJ_PRIV_KEY }}
 
       - name: Get project data
         env:
