@@ -6,10 +6,10 @@ on:
       - opened
 
 jobs:
-  set-issue-date:
+  set-date:
     permissions: {}
     if: ${{ github.repository == 'ac000-org-test/gh-org-sandpit' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Generate token
@@ -50,7 +50,7 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.generate-token.outputs.token }}
         run: |
-          PRI_ID=${{ github.event.issue.node_id }}
+          NODE_ID=${{ github.event.issue.node_id }}
 
           item_id="$(gh api graphql -f query='
             mutation($project:ID!, $item:ID!) {
@@ -62,10 +62,10 @@ jobs:
                     id
                   }
                 }
-              }' -f project=$PROJECT_ID -f item=$PRI_ID --jq '.data.addProjectV2ItemById.item.id')"
+              }' -f project=$PROJECT_ID -f item=$NODE_ID --jq '.data.addProjectV2ItemById.item.id')"
           echo 'ITEM_ID='$item_id >>$GITHUB_ENV
 
-      - name: Set creation date
+      - name: Set item creation date
         env:
           GH_TOKEN: ${{ steps.generate-token.outputs.token }}
         run: |
