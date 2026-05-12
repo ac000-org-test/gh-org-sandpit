@@ -8,7 +8,7 @@ on:
 jobs:
   set-date:
     permissions:
-      id_token: write
+      id-token: write
     if: ${{ github.repository == 'ac000-org-test/gh-org-sandpit' }}
     runs-on: ubuntu-24.04
 
